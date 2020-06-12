@@ -11,3 +11,46 @@ export const Films= styled.div`
     float:none;
 `;
 
+export const Title = styled.h6`
+    float:none;    
+    font-size:20px;
+    margin:10px;
+`;
+
+export const Info = styled.p`
+    float:none;
+    padding-left:15px;
+    font-size:15px;
+`;
+
+export const InfoWrapper = styled.div`
+    float:left;
+    margin:10px;
+    height:250px;
+    width:50%;
+    background: white;
+`;
+
+export const Card = styled.div`
+    margin:10px;
+    float:left;
+    width: 22%;
+    // background: pink;
+
+`;
+
+export const EleWrapper=styled.div`
+    float:none;
+`;
+
+export const CardWrapper=styled.div`
+    float:left; 
+    width:80%;
+    // background:pink;
+    margin:20px;
+`;
+
+export const Post=styled.img`
+    width=240px;
+    float:left;
+`;

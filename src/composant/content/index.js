@@ -1,5 +1,5 @@
 import React ,{ Component } from 'react';
-import {ContentWrapper} from './style';
+import {ContentWrapper,CardWrapper,Title,Post,InfoWrapper,Info} from './style';
 import { Card, Col, Row } from 'antd';
 import { DislikeOutlined,LikeOutlined } from '@ant-design/icons';
 import Item from 'antd/lib/list/Item';
@@ -21,33 +21,35 @@ class Content extends Component{
     };
 
     render() {
-        // console.log(this.state.list[1].catalogue+'123')
         return (
             <ContentWrapper>
-            <div>
-                {this.getFilm()};            
-            </div>
+                <div>
+                    {this.getFilm()}            
+                </div>
                 <>
-            <BackTop/>
-            See the top
-            <strong className="site-back-top-basic"></strong>
-        </>
-        <Pagination simple defaultCurrent={2} total={50} />
+                    <BackTop/>
+                        See the top
+                    <strong className="site-back-top-basic"></strong>
+                </>
+            <Pagination simple defaultCurrent={2} total={50} />
             </ContentWrapper>
         )}
 
         getFilm(){
             return filmlist.map((item,index)=>{
                 return(
-                    <Card
-                    hoverable
-                    style={{ width: 240 }}
-                    cover={<img alt="example" src={item.imgUrl}/>}
-                    >
-                     <Meta title={item.title} 
-                            description={"note: "+item.note} />   
-                    </Card>
-
+                    <CardWrapper>
+                        <Post src={item.imgUrl}></Post>
+                        <InfoWrapper>
+                            <Title> {item.title}</Title>
+                            {/* <br></br> */}
+                             <Info>
+                                 {"Categorie : "+item.catalogue}
+                             <br></br>
+                                 {"Note : "+item.note}
+                             </Info>
+                        </InfoWrapper>
+                   </CardWrapper>
                 )
             })
         }
@@ -56,5 +58,3 @@ class Content extends Component{
 
 
 export default Content;
-
-
