@@ -54,3 +54,20 @@ export const Post=styled.img`
     width=240px;
     float:left;
 `;
+
+export const ToolWrapper=styled.div`
+    margin:10px;
+    display:inline;
+`;
+
+export const Pourcent=styled.hr`
+    height:5px;
+    width:20px;
+    background:black;
+`;
+
+export const Close=styled.div`
+    float:right;
+    margin-top:-30px;
+    margin-right:20px;
+`;

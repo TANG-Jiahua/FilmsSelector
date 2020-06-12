@@ -1,7 +1,7 @@
-import React ,{ Component } from 'react';
-import {ContentWrapper,CardWrapper,Title,Post,InfoWrapper,Info} from './style';
-import { Card, Col, Row } from 'antd';
-import { DislikeOutlined,LikeOutlined } from '@ant-design/icons';
+import React ,{ Component,Fragment } from 'react';
+import {ContentWrapper,CardWrapper,Title,Post,Close,InfoWrapper,Info,ToolWrapper,Pourcent} from './style';
+import { Card, Button } from 'antd';
+import { DislikeOutlined,LikeOutlined,CloseCircleOutlined} from '@ant-design/icons';
 import Item from 'antd/lib/list/Item';
 import { BackTop,Pagination } from "antd";
 import {filmList} from './store/reducer';
@@ -18,39 +18,61 @@ class Content extends Component{
             list: filmlist
         }
         this.getFilm=this.getFilm.bind(this);
+        // this.handleBtnClick=this.handleBtnClick.bind(this);
     };
 
     render() {
         return (
-            <ContentWrapper>
-                <div>
-                    {this.getFilm()}            
-                </div>
-                <>
-                    <BackTop/>
-                        See the top
-                    <strong className="site-back-top-basic"></strong>
-                </>
-            <Pagination simple defaultCurrent={2} total={50} />
-            </ContentWrapper>
-        )}
+            <Fragment>
+                <ContentWrapper>
+                    <div>
+                        {this.getFilm()}            
+                    </div>
+                    
+                </ContentWrapper>
+                <Pagination simple defaultCurrent={1} total={50} />
+            </Fragment>
+    )}
 
         getFilm(){
-            return filmlist.map((item,index)=>{
+            return this.state.list.map((item,index)=>{
+                // console.log(item,index)
                 return(
                     <CardWrapper>
                         <Post src={item.imgUrl}></Post>
                         <InfoWrapper>
                             <Title> {item.title}</Title>
                             {/* <br></br> */}
-                             <Info>
-                                 {"Categorie : "+item.catalogue}
-                             <br></br>
-                                 {"Note : "+item.note}
-                             </Info>
+                            <Info>
+                                {"Categorie : "+item.catalogue}
+                            <br></br>
+                                {"Note : "+item.note}
+                            </Info>
+                            <ToolWrapper>
+                                <Button shape="circle" icon={<LikeOutlined />} />
+                                <Button shape="circle" icon={<DislikeOutlined />} />
+                                {/* <div style="width=50px;"></div> */}
+                           </ToolWrapper>
+                           <Close>
+                               <h6 style={{color:"grey" }}>I'm not intrested</h6>
+                                {/* <Button  icon={<CloseCircleOutlined />}
+                                         onClick={this.handleBtnClick(index)}
+                                ></Button> */}
+                                <button onClick={this.handleBtnClick.bind(this,index)}>I dont like</button>
+                           </Close>
+                           
                         </InfoWrapper>
                    </CardWrapper>
                 )
+            })
+        }
+
+        handleBtnClick(index){
+            console.log(index,this.state.list);
+            this.setState((prevState)=>{
+                const list=[...prevState.list];
+                list.splice(index,1);
+                return {list}
             })
         }
 
